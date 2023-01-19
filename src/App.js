@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Welcome from './components/Welcome';
+import { useState } from 'react';
+
 function App() {
+  const [isShown, setIsShown] = useState(false);
+
+  const [name , setName] = useState('')
+
+  const handleClick = event => {
+   
+    setIsShown(true);
+
+  }
+  const handleChange = (event) => {
+    setName(event.target.value);
+    setIsShown(false)
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <h1>Web Development Assignment</h1>
+        <p>Enter you name: <input value={name} onChange={handleChange}>
+
+        </input> <button type='submit' onClick={handleClick}>Login</button></p>
+
+        {/* 👇️ show elements on click */}
+        {isShown && <Welcome name={name}/>}
+        <p>Assignment done by Ashish Kumar Singh(12015585)</p>
     </div>
   );
 }
